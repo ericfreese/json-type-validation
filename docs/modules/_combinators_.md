@@ -13,6 +13,7 @@
 * [dict](_combinators_.md#dict)
 * [fail](_combinators_.md#fail)
 * [intersection](_combinators_.md#intersection)
+* [jsonValue](_combinators_.md#jsonvalue)
 * [lazy](_combinators_.md#lazy)
 * [number](_combinators_.md#number)
 * [object](_combinators_.md#object)
@@ -91,6 +92,15 @@ ___
 **● intersection**: *[intersection](../classes/_decoder_.decoder.md#intersection)* =  Decoder.intersection
 
 See `Decoder.intersection`
+
+___
+<a id="jsonvalue"></a>
+
+### `<Const>` jsonValue
+
+**● jsonValue**: *[jsonValue]()* =  Decoder.jsonValue
+
+See `Decoder.jsonValue`
 
 ___
 <a id="lazy"></a>

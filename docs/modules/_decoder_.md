@@ -15,6 +15,7 @@
 ### Type aliases
 
 * [DecoderObject](_decoder_.md#decoderobject)
+* [JsonValue](_decoder_.md#jsonvalue)
 
 ### Functions
 
@@ -47,6 +48,14 @@ const decoderObject: DecoderObject<X> = {
 ```
 
 #### Type declaration
+
+___
+<a id="jsonvalue"></a>
+
+###  JsonValue
+
+**ΤJsonValue**: * `JsonPrimitive` &#124; `JsonObject` &#124; `JsonArray`
+*
 
 ___
 

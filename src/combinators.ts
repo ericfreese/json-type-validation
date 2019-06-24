@@ -17,6 +17,9 @@ export const anyJson = Decoder.anyJson;
 /** See `Decoder.unknownJson` */
 export const unknownJson: () => Decoder<unknown> = Decoder.unknownJson;
 
+/** See `Decoder.jsonValue` */
+export const jsonValue = Decoder.jsonValue;
+
 /** See `Decoder.constant` */
 export const constant = Decoder.constant;
 

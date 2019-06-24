@@ -65,6 +65,11 @@ const isJsonArray = (json: any): json is unknown[] => Array.isArray(json);
 const isJsonObject = (json: any): json is Record<string, unknown> =>
   typeof json === 'object' && json !== null && !isJsonArray(json);
 
+type JsonPrimitive = string | number | boolean | null;
+export type JsonValue = JsonPrimitive | JsonObject | JsonArray;
+type JsonObject = {[member: string]: JsonValue};
+interface JsonArray extends Array<JsonValue> {}
+
 const typeString = (json: unknown): string => {
   switch (typeof json) {
     case 'string':
@@ -199,6 +204,37 @@ export class Decoder<A> {
    */
   static unknownJson = (): Decoder<unknown> =>
     new Decoder<unknown>((json: unknown) => Result.ok(json));
+
+  /**
+   * Decoder identity function which always succeeds and types the result as
+   * `unknown`.
+   */
+
+  // type JsonPrimitive = string | number | boolean | null;
+  // type JsonValue = JsonPrimitive | JsonObject | JsonArray;
+  // type JsonObject = {[member: string]: JsonValue};
+  // interface JsonArray extends Array<JsonValue> {}
+
+  static jsonPrimitive = (): Decoder<JsonPrimitive> =>
+    Decoder.union(
+      Decoder.string(),
+      Decoder.number(),
+      Decoder.boolean(),
+      Decoder.constant(null)
+    )
+
+  static jsonValue = (): Decoder<JsonValue> =>
+    Decoder.union(
+      Decoder.jsonPrimitive(),
+      Decoder.jsonObject(),
+      Decoder.jsonArray()
+    )
+
+  static jsonArray = (): Decoder<JsonValue> =>
+    Decoder.array(Decoder.jsonValue()) // TODO
+
+  static jsonObject = (): Decoder<JsonValue> =>
+    Decoder.object({}) // TODO
 
   /**
    * Decoder primitive that only matches on exact values.
